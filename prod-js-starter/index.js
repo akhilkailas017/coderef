@@ -2,18 +2,17 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
-
 const connectDB = require('./config/db');
 const adminRoutes = require('./routes/adminRoutes');
 const userRoutes = require('./routes/userRoutes');
 const config = require('./config/env');
 const compressor = require('./middleware/compressor');
 const { globalLimiter } = require('./middleware/rateLimiter');
+const helmet = require('helmet');
 
 const app = express();
-
+app.use(helmet());
 connectDB();
-
 app.use(compressor);
 app.use(globalLimiter);
 app.use(cors({ origin: config.app.corsOrigins, credentials: true }));
@@ -25,8 +24,32 @@ app.use('/user', userRoutes);
 
 app.get('/status', async (req, res) => {
   const mongoose = require('mongoose');
-  const states = ['disconnected', 'connected', 'connecting', 'disconnecting'];
-  res.json({ server: 'ok', database: states[mongoose.connection.readyState] });
+  const dbStates = ['disconnected', 'connected', 'connecting', 'disconnecting'];
+  const dbState = dbStates[mongoose.connection.readyState];
+  const start = performance.now();
+  try {
+    await mongoose.connection.db.admin().ping();
+  } catch (err) {}
+  const dbPingMs = (performance.now() - start).toFixed(2);
+  const memory = process.memoryUsage();
+
+  res.json({
+    server: 'ok',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+
+    database: {
+      state: dbState,
+      pingMs: dbPingMs
+    },
+
+    memory: {
+      rss: memory.rss,
+      heapTotal: memory.heapTotal,
+      heapUsed: memory.heapUsed,
+      external: memory.external
+    }
+  });
 });
 
 app.listen(config.app.port, () =>
