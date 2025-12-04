@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const config = {
   app: {
+    nodeEnv: process.env.NODE_ENV || 'development',
     port: process.env.PORT || 5000,
     corsOrigins: process.env.CORS_ORIGINS
       ? process.env.CORS_ORIGINS.split(',')
