@@ -40,9 +40,10 @@
     "pino-pretty": "^11.2.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-node": "^11.1.0",
+    "globals": "^16.5.0",
     "lint-staged": "^15.2.2",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3"
