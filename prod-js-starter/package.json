@@ -1,18 +1,28 @@
 {
   "name": "js-backend-starter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Production-ready Node.js backend starter template using Express and MongoDB.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "format": "prettier --write ."
+    "dev": "nodemon index.js",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "express",
+    "nodejs",
+    "backend",
+    "api",
+    "mongodb",
+    "starter"
+  ],
+  "author": "Akhil Kailas",
+  "license": "MIT",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -25,9 +35,16 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
-    "mongoose": "^9.0.0"
+    "mongoose": "^9.0.0",
+    "pino": "^9.3.2",
+    "pino-pretty": "^11.2.2"
   },
   "devDependencies": {
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "lint-staged": "^15.2.2",
+    "nodemon": "^3.1.4",
     "prettier": "^3.3.3"
   }
 }
