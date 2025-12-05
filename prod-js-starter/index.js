@@ -9,11 +9,16 @@ const config = require('./config/env');
 const compressor = require('./middleware/compressor');
 const { globalLimiter } = require('./middleware/rateLimiter');
 const helmet = require('helmet');
-const loadSwagger = require('./swagger/swaggerLoader');
+const path = require('path');
+const fs = require('fs');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(path.join(__dirname, './swagger/swagger.json'))
+);
 
 const app = express();
 app.use(helmet());
-loadSwagger(app);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 connectDB();
 app.use(compressor);
 app.use(globalLimiter);
