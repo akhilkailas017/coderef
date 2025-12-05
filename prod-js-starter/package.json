@@ -37,7 +37,9 @@
     "jwt-decode": "^4.0.0",
     "mongoose": "^9.0.0",
     "pino": "^9.3.2",
-    "pino-pretty": "^11.2.2"
+    "pino-pretty": "^11.2.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
