@@ -9,9 +9,11 @@ const config = require('./config/env');
 const compressor = require('./middleware/compressor');
 const { globalLimiter } = require('./middleware/rateLimiter');
 const helmet = require('helmet');
+const loadSwagger = require('./swagger/swaggerLoader');
 
 const app = express();
 app.use(helmet());
+loadSwagger(app);
 connectDB();
 app.use(compressor);
 app.use(globalLimiter);
