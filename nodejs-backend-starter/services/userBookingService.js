@@ -8,7 +8,7 @@ async function createBooking(data, username) {
 }
 
 async function listBookings(queryParams, username) {
-  const { page = 1, limit = 10, villa, date, id } = queryParams;
+  let { page = 1, limit = 10, villa, date, id } = queryParams;
   page = parseInt(page);
   limit = parseInt(limit);
 
