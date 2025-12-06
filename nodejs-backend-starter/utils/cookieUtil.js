@@ -3,12 +3,12 @@ const config = require('../config/env');
 const COOKIE_NAMES = {
   Admin: {
     access: 'admin_access_token',
-    refresh: 'admin_refresh_token',
+    refresh: 'admin_refresh_token'
   },
   User: {
     access: 'user_access_token',
-    refresh: 'user_refresh_token',
-  },
+    refresh: 'user_refresh_token'
+  }
 };
 
 function getCookieOptions(maxAge) {
@@ -19,7 +19,7 @@ function getCookieOptions(maxAge) {
     secure: isProd,
     sameSite: isProd ? 'strict' : 'lax',
     maxAge,
-    path: '/',
+    path: '/'
   };
 }
 
@@ -50,5 +50,5 @@ function clearAuthCookies(res, role) {
 module.exports = {
   setAuthCookies,
   clearAuthCookies,
-  COOKIE_NAMES,
+  COOKIE_NAMES
 };

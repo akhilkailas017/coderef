@@ -1,17 +1,17 @@
-* **Express 5** API boilerplate
-* **MongoDB + Mongoose 9** for schema modeling
-* **JWT authentication support**
-* **Security best practices**
+- **Express 5** API boilerplate
+- **MongoDB + Mongoose 9** for schema modeling
+- **JWT authentication support**
+- **Security best practices**
+  - Helmet
+  - CORS
+  - Rate limiting
+  - Cookie parsing
+  - Compression
 
-  * Helmet
-  * CORS
-  * Rate limiting
-  * Cookie parsing
-  * Compression
-* **Prettier + ESLint 9** for clean and consistent code
-* **Pino (Pretty)** for fast JSON logging
-* **Environment-based config**
-* **Nodemon** for development live-reload
+- **Prettier + ESLint 9** for clean and consistent code
+- **Pino (Pretty)** for fast JSON logging
+- **Environment-based config**
+- **Nodemon** for development live-reload
 
 ## **Installation**
 
@@ -73,7 +73,7 @@ Currently no test runner is configured.
 
 To add test support later, recommended scaffolding:
 
-* **Jest** for unit tests
-* **Supertest** for API endpoint testing
+- **Jest** for unit tests
+- **Supertest** for API endpoint testing
 
 ---
