@@ -18,8 +18,11 @@ const swaggerDocument = JSON.parse(
 
 const app = express();
 app.use(helmet());
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-connectDB();
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
+
 app.use(compressor);
 app.use(globalLimiter);
 app.use(cors({ origin: config.app.corsOrigins, credentials: true }));
@@ -59,6 +62,10 @@ app.get('/status', async (req, res) => {
   });
 });
 
-app.listen(config.app.port, () =>
-  console.log(`Server running on port ${config.app.port}`)
-);
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(config.app.port, () =>
+    console.log(`Server running on port ${config.app.port}`)
+  );
+}
+
+module.exports = app;
