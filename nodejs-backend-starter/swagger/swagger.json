@@ -68,36 +68,47 @@
       }
     },
 
-    "/admin/booking": {
-      "post": {
-        "summary": "Create Booking (Admin)",
-        "tags": ["Admin"],
-        "security": [{ "BearerAuth": [] }],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "type": "object" }
-            }
-          }
-        },
-        "responses": {
-          "200": { "description": "Booking created" }
-        }
-      },
+    "/admin/users": {
       "get": {
-        "summary": "List Bookings (Admin)",
+        "summary": "List Users (Admin)",
         "tags": ["Admin"],
         "security": [{ "BearerAuth": [] }],
         "parameters": [
           {
             "in": "query",
-            "name": "status",
+            "name": "page",
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": { "type": "integer", "default": 10 }
+          },
+          {
+            "in": "query",
+            "name": "username",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "id",
             "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "200": { "description": "List of bookings" }
+          "200": {
+            "description": "List of users"
+          }
         }
       }
     },
@@ -167,42 +178,75 @@
       }
     },
 
-    "/user/booking": {
+    "/user/blog": {
       "post": {
-        "summary": "Create Booking (User)",
-        "tags": ["User"],
+        "summary": "Create Blog Post",
+        "tags": ["Blog"],
         "security": [{ "BearerAuth": [] }],
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": { "schema": { "type": "object" } }
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "content": { "type": "string" },
+                  "tags": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                },
+                "required": ["title", "content"]
+              }
+            }
           }
         },
         "responses": {
-          "201": { "description": "Booking created" }
+          "201": { "description": "Blog post created" }
         }
       },
       "get": {
-        "summary": "List Bookings (User)",
-        "tags": ["User"],
+        "summary": "List Blog Posts",
+        "tags": ["Blog"],
         "security": [{ "BearerAuth": [] }],
         "parameters": [
           {
             "in": "query",
-            "name": "status",
+            "name": "page",
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": { "type": "integer", "default": 10 }
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "author",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "id",
             "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "200": { "description": "Booking list" }
+          "200": { "description": "List of blog posts" }
         }
       }
     },
 
-    "/user/booking/{id}": {
-      "put": {
-        "summary": "Update Booking (User)",
-        "tags": ["User"],
+    "/user/blog/{id}": {
+      "get": {
+        "summary": "Get a Single Blog Post",
+        "tags": ["Blog"],
         "security": [{ "BearerAuth": [] }],
         "parameters": [
           {
@@ -212,19 +256,15 @@
             "schema": { "type": "string" }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": { "schema": { "type": "object" } }
-          }
-        },
         "responses": {
-          "200": { "description": "Booking updated" }
+          "200": { "description": "Blog post details" },
+          "404": { "description": "Post not found" }
         }
       },
+
       "patch": {
-        "summary": "Partially Update Booking (User)",
-        "tags": ["User"],
+        "summary": "Update Blog Post",
+        "tags": ["Blog"],
         "security": [{ "BearerAuth": [] }],
         "parameters": [
           {
@@ -237,16 +277,30 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": { "schema": { "type": "object" } }
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "content": { "type": "string" },
+                  "tags": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                }
+              }
+            }
           }
         },
         "responses": {
-          "200": { "description": "Booking updated" }
+          "200": { "description": "Blog post updated" },
+          "404": { "description": "Post not found or unauthorized" }
         }
       },
+
       "delete": {
-        "summary": "Delete Booking (User)",
-        "tags": ["User"],
+        "summary": "Delete Blog Post",
+        "tags": ["Blog"],
         "security": [{ "BearerAuth": [] }],
         "parameters": [
           {
@@ -257,7 +311,8 @@
           }
         ],
         "responses": {
-          "200": { "description": "Booking deleted" }
+          "200": { "description": "Blog post deleted" },
+          "404": { "description": "Post not found or unauthorized" }
         }
       }
     },
