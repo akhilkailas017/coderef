@@ -24,7 +24,6 @@ describe('Admin Routes', function () {
     const res = await request(app)
       .post('/admin/login')
       .send({ username: 'wrong', password: 'testpass' });
-
     expect(res.status).to.equal(401);
   });
 
@@ -33,7 +32,6 @@ describe('Admin Routes', function () {
       username: 'admin',
       password: 'admin'
     });
-
     expect(res.status).to.equal(200);
     expect(res.body).to.have.property('accessToken');
     expect(res.body).to.have.property('refreshToken');
@@ -43,7 +41,18 @@ describe('Admin Routes', function () {
     const res = await request(app)
       .post('/admin/refresh-token')
       .send({ token: 'invalid' });
-
     expect(res.status).to.equal(403);
+  });
+
+  it('should accept valid refresh token', async () => {
+    const loginRes = await request(app)
+      .post('/admin/login')
+      .send({ username: 'admin', password: 'admin' });
+    const refreshToken = loginRes.body.refreshToken;
+    const res = await request(app)
+      .post('/admin/refresh-token')
+      .send({ token: refreshToken });
+    expect(res.status).to.equal(200);
+    expect(res.body).to.have.property('accessToken');
   });
 });
