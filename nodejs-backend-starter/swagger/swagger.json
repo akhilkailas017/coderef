@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "RR Check-In API",
+    "title": "API List",
     "version": "1.0.0",
-    "description": "API documentation for Admin & User endpoints."
+    "description": "API documentation."
   },
   "servers": [
     {

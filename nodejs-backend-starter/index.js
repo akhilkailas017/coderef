@@ -12,6 +12,7 @@ const helmet = require('helmet');
 const path = require('path');
 const fs = require('fs');
 const swaggerUi = require('swagger-ui-express');
+const logger = require('./utils/logger');
 const swaggerDocument = JSON.parse(
   fs.readFileSync(path.join(__dirname, './swagger/swagger.json'))
 );
@@ -63,7 +64,9 @@ app.get('/status', async (req, res) => {
 });
 
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(config.app.port);
+ app.listen(config.app.port, () => {
+    logger.info("Server started");
+  });
 }
 
 module.exports = app;
