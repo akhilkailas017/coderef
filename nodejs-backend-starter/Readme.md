@@ -12,6 +12,7 @@
 * **Compression** for response compression and faster performance
 * **ESLint + Prettier** for consistent code quality
 * **Mocha + Chai + Supertest** for testing
+* **Swagger UI** for API documentation (`/docs` endpoint)
 
 ---
 
