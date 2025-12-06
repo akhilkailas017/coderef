@@ -5,8 +5,9 @@ const logger = require('../utils/logger');
 const connectDB = async () => {
   try {
     await mongoose.connect(config.db.mongoUrl);
-    logger.info("Database connected");
+    logger.info('Database connected');
   } catch (err) {
+    logger.error(err);
     process.exit(1);
   }
 };

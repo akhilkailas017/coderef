@@ -14,7 +14,6 @@ const logger = pino({
 
 module.exports = logger;
 
-// const logger = require('./utils/logger');
 // logger.info("Server started");
 // logger.error("Something went wrong");
 // logger.debug("Debug details...");

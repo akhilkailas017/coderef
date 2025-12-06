@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const {
-  login,
-  refreshToken,
   createBooking,
   listBookings
-} = require('../controllers/adminController');
+} = require('../controllers/adminBookingController');
 const authMiddleware = require('../middleware/authMiddleware');
 const roleMiddleware = require('../middleware/roleMiddleware');
 const { authLimiter } = require('../middleware/rateLimiter');
+const { login, refreshToken } = require('../controllers/adminAuthController');
 
 router.post('/login', authLimiter, login);
 router.post('/refresh-token', refreshToken);

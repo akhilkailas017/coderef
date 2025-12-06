@@ -40,7 +40,9 @@ app.get('/status', async (req, res) => {
   const start = performance.now();
   try {
     await mongoose.connection.db.admin().ping();
-  } catch (err) {}
+  } catch (err) {
+    res.json({ error: err });
+  }
   const dbPingMs = (performance.now() - start).toFixed(2);
   const memory = process.memoryUsage();
 
@@ -64,8 +66,8 @@ app.get('/status', async (req, res) => {
 });
 
 if (process.env.NODE_ENV !== 'test') {
- app.listen(config.app.port, () => {
-    logger.info("Server started");
+  app.listen(config.app.port, () => {
+    logger.info('Server started');
   });
 }
 

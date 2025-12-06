@@ -28,7 +28,7 @@ describe('Admin Routes', function () {
     expect(res.status).to.equal(401);
   });
 
-  it('should login successfully with dummy admin values', async () => {
+  it('should login successfully original admin values', async () => {
     const res = await request(app).post('/admin/login').send({
       username: 'admin',
       password: 'admin'

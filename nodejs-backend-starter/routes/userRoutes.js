@@ -1,18 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const userAuthController = require('../controllers/userAuthController');
+const userBookingController = require('../controllers/userBookingController');
 const authMiddleware = require('../middleware/authMiddleware');
 const { authLimiter } = require('../middleware/rateLimiter');
 
-router.post('/register', authLimiter, userController.register);
-router.post('/login', authLimiter, userController.login);
-router.post('/refresh-token', userController.refreshToken);
+router.post('/register', authLimiter, userAuthController.register);
+router.post('/login', authLimiter, userAuthController.login);
+router.post('/refresh-token', userAuthController.refreshToken);
 
 router.use(authMiddleware('User'));
-router.post('/booking', userController.createBooking);
-router.get('/booking', userController.listBookings);
-router.put('/booking/:id', userController.updateBooking);
-router.patch('/booking/:id', userController.updateBooking);
-router.delete('/booking/:id', userController.deleteBooking);
+router.post('/booking', userBookingController.createBooking);
+router.get('/booking', userBookingController.listBookings);
+router.put('/booking/:id', userBookingController.updateBooking);
+router.patch('/booking/:id', userBookingController.updateBooking);
+router.delete('/booking/:id', userBookingController.deleteBooking);
 
 module.exports = router;

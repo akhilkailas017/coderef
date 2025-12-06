@@ -13,7 +13,9 @@ function authMiddleware(role) {
       req.user = decoded;
       next();
     } catch (err) {
-      return res.status(401).json({ error: 'Invalid or expired token' });
+      return res
+        .status(401)
+        .json({ error: 'Invalid or expired token', msg: err });
     }
   };
 }
