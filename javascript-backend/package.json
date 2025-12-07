@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-backend-starter",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "NodeJs Backend Starter",
+  "description": "Backend",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -16,8 +16,7 @@
     "nodejs",
     "backend",
     "api",
-    "mongodb",
-    "starter"
+    "mongodb"
   ],
   "author": "akhilkailas2001@gmail.com",
   "license": "MIT",

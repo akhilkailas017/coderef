@@ -1,4 +1,4 @@
-# Node.js Backend Starter
+# Backend
 
 ## Tech Stack
 
