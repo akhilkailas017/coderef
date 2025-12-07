@@ -9,6 +9,7 @@ const config = require('./config/env');
 const compressor = require('./middleware/compressor');
 const { globalLimiter } = require('./middleware/rateLimiter');
 const helmet = require('helmet');
+const hpp = require('hpp');
 const path = require('path');
 const fs = require('fs');
 const swaggerUi = require('swagger-ui-express');
@@ -19,6 +20,7 @@ const swaggerDocument = JSON.parse(
 
 const app = express();
 app.use(helmet());
+app.use(hpp());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 if (process.env.NODE_ENV !== 'test') {
   connectDB();

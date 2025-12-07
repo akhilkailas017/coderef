@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "prod": "pm2 start index.js --name backend",
     "format": "prettier --write .",
     "lint": "eslint .",
     "test": "cross-env NODE_ENV=test mocha --timeout 10000"
@@ -33,11 +34,13 @@
     "express": "^5.1.0",
     "express-rate-limit": "^8.2.1",
     "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "mongoose": "^9.0.0",
     "pino": "^9.3.2",
     "pino-pretty": "^11.2.2",
+    "pm2": "^6.0.14",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
