@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "prod": "pm2 start index.js --name backend",
+    "prod": "cross-env NODE_ENV=production pm2 start index.js --name backend",
     "format": "prettier --write .",
     "lint": "eslint .",
     "test": "cross-env NODE_ENV=test mocha --timeout 10000"
